@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 100%;
+    --card: 240 10% 4%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 10% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 330 80% 70%;
+    /* Soft Rose/Pink */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 10% 8%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 10% 12%;
+    --muted-foreground: 240 5% 60%;
+    --accent: 330 80% 70%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.15;
+    --input: 0 0% 100% / 0.08;
+    --ring: 330 80% 70%;
+    --radius: 16px;
+
+    /* Accent Palette - Girly Rain Theme */
+    --accent-magenta: 330 80% 70%;
+    --accent-cyan: 270 70% 80%;
+    /* Lavender */
+    --accent-green: 150 70% 80%;
+    /* Soft Mint */
+    --accent-steel: 240 5% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[#0A0A0B] text-white selection:bg-primary/30 overflow-hidden h-screen w-screen relative;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 20% 30%, hsla(330, 80%, 70%, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, hsla(270, 70%, 80%, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: pulse-bg 10s ease-infinite;
+  }
+
+  @keyframes pulse-bg {
+
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+@layer components {
+  .neo-shadow {
+    box-shadow: 4px 4px 0px 0px hsl(var(--primary));
+    transition: transform 0.05s ease, box-shadow 0.05s ease;
+  }
+
+  .neo-shadow:active {
+    box-shadow: 0px 0px 0px 0px hsl(var(--primary));
+    transform: translate(4px, 4px);
+  }
+
+  .brutalist-card {
+    @apply bg-[#0A0A0B] border border-white/20 p-8 flex flex-col h-full neo-shadow;
+  }
+
+  .brutalist-button {
+    @apply bg-[#0A0A0B] text-white border-2 border-white font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-white/5 transition-all neo-shadow;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
